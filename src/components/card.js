@@ -61,7 +61,7 @@ export default function SimpleCard() {
           <Typography variant="body2" component="h2">
             Y.S Limbani <br />
           </Typography>
-          <Typography className={classes.pos} color="textSecondary">
+          <Typography className={classes.title} color="textSecondary">
             <span
               style={{
                 color: "red",
