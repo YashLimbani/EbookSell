@@ -3,6 +3,36 @@ import { Route, Routes, NavLink } from "react-router-dom";
 import Welcome from "./components/Welcome";
 import User from "./components/User";
 import { Button } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+// import { ThemeProvider } from '@material-ui/styles';
+import { purple } from "@material-ui/core/colors";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      // main: purple[500],
+      light: "#ff4010",
+      main: "#f50057",
+      dark: "#c51162",
+      contrastText: "#fff",
+    },
+    secondary: {
+      // light: "#ff4010",
+      // This is green.A700 as hex.
+      main: "#11cb5f",
+    },
+    typography: {
+      h1: {
+        fontWeight: 300,
+        fontSize: "6rem",
+        lineHeight: 1.167,
+        letterSpacing: "-0.01562em",
+        color: "#ff4081 !important",
+      },
+    },
+  },
+});
 
 function App() {
   return (
