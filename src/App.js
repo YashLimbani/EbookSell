@@ -2,6 +2,8 @@ import "./App.css";
 import { Route, Routes, NavLink } from "react-router-dom";
 import Welcome from "./components/Welcome";
 import User from "./components/User";
+import { CssBaseline } from "@material-ui/core";
+import Home from "./components/Home";
 import { Button } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 // import { ThemeProvider } from '@material-ui/styles';
@@ -36,39 +38,53 @@ const theme = createTheme({
 
 function App() {
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          // background: "linear-gradient(120deg,black,white)",
-          background: "pink",
-          height: 50,
-        }}
-      >
-        <Button variant="outlined" color="primary">
-          <NavLink to="/"> HOME PAGE</NavLink> <br />
-        </Button>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
 
-        <Button variant="outlined" color="primary">
-          <NavLink to="/welcome"> WELCOME PAGE</NavLink> <br />
-        </Button>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            background: "linear-gradient(45deg,pink,rgb(193, 132, 250))",
+            height: 70,
+          }}
+        >
+          <NavLink
+            to="/"
+            style={{ fontSize: "1.2rem", textDecoration: "none" }}
+          >
+            HOME 🏠
+          </NavLink>
+          <br />
+          <NavLink
+            to="/welcome"
+            style={{ fontSize: "1.3rem", textDecoration: "none" }}
+          >
+            {" "}
+            WELCOME 👋
+          </NavLink>
+          <br />
+          <NavLink
+            to="/user"
+            style={{ fontSize: "1.3rem", textDecoration: "none" }}
+          >
+            {" "}
+            USER 🤵{" "}
+          </NavLink>
+        </div>
 
-        <Button variant="outlined" color="primary">
-          <NavLink to="/user"> USER </NavLink>
-        </Button>
+        <Routes path="/">
+          <Route index element={<Home />} />
+          <Route path="/welcome" element={<Welcome />} />
+          <Route
+            path="/user"
+            element={<User name="Y.S Limbani" role="student" />}
+          />
+        </Routes>
       </div>
-
-      <Routes path="/">
-        <Route index element={<h1>You are at HOME PAGE</h1>} />
-        <Route path="/welcome" element={<Welcome />} />
-        <Route
-          path="/user"
-          element={<User name="Yash Limbani" role="student" />}
-        />
-      </Routes>
-    </div>
+    </ThemeProvider>
   );
 }
 

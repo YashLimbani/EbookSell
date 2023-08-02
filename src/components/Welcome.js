@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 export default function Welcome() {
   return (
@@ -7,7 +8,12 @@ export default function Welcome() {
       {/* <Typography variant="h3" align="left" color="primary">
         Welcome
       </Typography> */}
-      <Typography variant="h4" align="left" color="secondary">
+      <Typography
+        variant="h4"
+        align="center"
+        color="secondary"
+        sx={{ padding: "20px" }}
+      >
         WELCOME TO OUR SITE 👋
       </Typography>
     </div>
