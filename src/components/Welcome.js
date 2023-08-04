@@ -11,7 +11,7 @@ export default function Welcome() {
       <Typography
         variant="h4"
         align="center"
-        color="secondary"
+        color="purple"
         sx={{ padding: "20px" }}
       >
         WELCOME TO OUR SITE 👋

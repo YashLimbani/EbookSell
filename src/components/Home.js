@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Typography
         variant="h2"
-        color="secondary"
+        color="purple"
         align="center"
         padding="100"
         sx={{ padding: "20px" }}
@@ -21,13 +21,13 @@ export default function Home() {
         {" "}
         Home 🏠
       </Typography>
-      <Typography variant="h2" color="secondary" align="center">
+      <Typography variant="h2" color="purple" align="center">
         <Button variant="contained" onClick={clickHandler}>
           {" "}
           cilck to say HII 👋
         </Button>
       </Typography>
-      <Typography variant="h2" color="secondary" align="center">
+      <Typography variant="h2" color="purple" align="center">
         {num}
       </Typography>
     </>

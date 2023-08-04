@@ -1,23 +1,28 @@
 import React from "react";
-import { Button, Grid } from "@material-ui/core";
-import { Typography } from "@mui/material";
+import { Typography, Button, Grid } from "@material-ui/core";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import TextFieldCustom from "../UI/TextField";
 import Password from "../UI/PassWord";
 import Select from "../UI/Select";
+import authService from "./../service/auth.service";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-export default function User(props) {
+export default function Register(props) {
+  const navigate = useNavigate();
+
   const initialValues = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
-    role: "",
+    roleId: "",
   };
 
-  const Option = ["User", "Seller", "Admin"];
+  const Option = ["buyer", "Seller"];
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name isRequired"),
@@ -28,15 +33,23 @@ export default function User(props) {
 
     password: Yup.string()
       .required("Password is required")
-      .min(8, "Password must be atleast 8 characters"),
+      .min(5, "Password must be atleast 5 characters"),
 
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Password must match")
       .required("Confirm Password is required"),
 
-    role: Yup.string().required("Role is required"),
+    roleId: Yup.number().required("Role is required"),
   });
 
+  const onSubmit = (data) => {
+    console.log("submitting");
+    delete data.confirmPassword;
+    authService.create(data).then((res) => {
+      navigate("/login");
+      toast.success("Successfully registered");
+    });
+  };
   return (
     <div
       style={{
@@ -53,13 +66,13 @@ export default function User(props) {
         validateOnChange="true"
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={onSubmit}
       >
         <Form>
-          <Typography variant="h5" style={{ marginLeft: 100 }}>
+          <Typography variant="h5" style={{ marginLeft: "5.55vw" }}>
             Personal Information
           </Typography>
-          <Grid container style={{ marginLeft: 100 }}>
+          <Grid container justifyContent="space-evenly">
             <Grid item xs={5}>
               <TextFieldCustom name="firstName" label="First Name" />
             </Grid>
@@ -70,24 +83,24 @@ export default function User(props) {
           <br></br>
           <br></br>
 
-          <Typography variant="h5" style={{ marginLeft: 100 }}>
+          <Typography variant="h5" style={{ marginLeft: "5.55vw" }}>
             Email Address
           </Typography>
-          <Grid container style={{ marginLeft: 100 }}>
+          <Grid container justifyContent="space-evenly">
             <Grid item xs={5}>
               <TextFieldCustom name="email" label="email" />
             </Grid>
             <Grid item xs={5}>
-              <Select name="role" options={Option} label="Roles" />
+              <Select name="roleId" options={Option} label="Roles" />
             </Grid>
           </Grid>
           <br></br>
           <br></br>
 
-          <Typography variant="h5" style={{ marginLeft: 100 }}>
+          <Typography variant="h5" style={{ marginLeft: "5.55vw" }}>
             Login Information
           </Typography>
-          <Grid container style={{ marginLeft: 100 }}>
+          <Grid container justifyContent="space-evenly">
             <Grid item xs={5}>
               <Password name="password" label="Password" />
             </Grid>
@@ -95,19 +108,33 @@ export default function User(props) {
               <Password name="confirmPassword" label="Confirm Password" />
             </Grid>
           </Grid>
+          <br></br>
 
-          <br></br>
-          <br></br>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{
-              marginLeft: "30%",
-            }}
-          >
-            Register
-          </Button>
+          <Grid container justifyContent="space-evenly">
+            <Grid item xs={5}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+              >
+                Register
+              </Button>
+            </Grid>
+          </Grid>
+          <br />
+          <Grid container justifyContent="space-evenly">
+            <Grid item xs={5}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </Button>
+            </Grid>
+          </Grid>
         </Form>
       </Formik>
     </div>
