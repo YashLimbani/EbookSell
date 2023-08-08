@@ -5,10 +5,13 @@ import TextFieldWrapper from "../UI/TextField";
 import Password from "../UI/PassWord";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import authService from "./../service/auth.service";
+import authService from "../service/auth.service";
 import { toast } from "react-toastify";
+import { useAuthContext } from "../contexts/auth";
 
 export default function Login() {
+  const authContext = useAuthContext();
+
   const initialValues = {
     email: "",
     password: "",
@@ -26,21 +29,23 @@ export default function Login() {
     console.log("LOGIN ......");
     authService.login(data).then((res) => {
       toast.success("Successfully registered");
+      // console.log("res",res);
+      authContext.setUser(res);
+      // setLogin(true);
       navigate("/");
     });
   };
 
   const navigate = useNavigate();
   return (
-    <div
-      style={{
-        overflow: "hidden",
-        padding: 20,
-        color: "purple",
-      }}
-    >
-      <Typography variant="h4" align="center">
-        Login
+    <div style={{ overflow: "hidden" }}>
+      <Typography
+        variant="h4"
+        align="center"
+        color="primary"
+        style={{ fontWeight: "bolder" }}
+      >
+        LOGIN
       </Typography>
 
       <Grid
@@ -50,8 +55,8 @@ export default function Login() {
       >
         <Grid
           item
-          xs={6}
-          alignItems="stretch"
+          xs={12}
+          sm={6}
           style={{ height: "80%", borderRight: "1.5px solid grey" }}
         >
           <Typography variant="h5" align="center" color="primary">
@@ -82,7 +87,8 @@ export default function Login() {
         </Grid>
         <Grid
           item
-          xs={6}
+          xs={12}
+          sm={6}
           style={{ borderLeft: "1.5px solid grey", height: "80%" }}
         >
           <Typography variant="h5" align="center">
@@ -95,13 +101,11 @@ export default function Login() {
             validationSchema={validationSchema}
             onSubmit={onSubmit}
           >
-            <Form style={{ width: "50%", marginLeft: "12vw" }}>
+            <Form
+              style={{ width: "50%", minWidth: "350px", marginLeft: "12vw" }}
+            >
               <div style={{ height: "20vh" }}>
-                <TextFieldWrapper
-                  label="Email"
-                  name="email"
-                  fullWidth="false"
-                />
+                <TextFieldWrapper label="Email" name="email" />
                 <br></br>
                 <br></br>
                 <Password label="Password" name="password" />

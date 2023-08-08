@@ -1,15 +1,18 @@
 import "./App.css";
+import "./index.js";
 import { Route, Routes, NavLink } from "react-router-dom";
 import Welcome from "./components/Welcome";
 // import User from "./components/User";
 import { CssBaseline } from "@material-ui/core";
 import Home from "./components/Home";
-import { Button } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 // import { ThemeProvider } from '@material-ui/styles';
 import { purple } from "@material-ui/core/colors";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Header from "./components/Header";
+import { AuthProvider } from "./contexts/auth";
+import { ToastContainer, toa } from "react-toastify";
 
 const theme = createTheme({
   palette: {
@@ -42,42 +45,10 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-
-      <div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            // background: "linear-gradient(45deg,pink,rgb(193, 132, 250))",
-            background: "orange",
-            height: 70,
-          }}
-        >
-          <NavLink
-            to="/"
-            style={{ fontSize: "1.2rem", textDecoration: "none" }}
-          >
-            HOME
-          </NavLink>
-          <br />
-          <NavLink
-            to="/welcome"
-            style={{ fontSize: "1.3rem", textDecoration: "none" }}
-          >
-            {" "}
-            WELCOME
-          </NavLink>
-          <br />
-          <NavLink
-            to="/Register"
-            style={{ fontSize: "1.3rem", textDecoration: "none" }}
-          >
-            {" "}
-            USER{" "}
-          </NavLink>
-        </div>
+      <AuthProvider>
+        <Header />
+        <ToastContainer />
+        <CssBaseline />
 
         <Routes path="/">
           <Route index element={<Home />} />
@@ -85,7 +56,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </div>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
