@@ -54,13 +54,15 @@ export default function Header() {
       <div className="header">
         {authContext.user.id != 0 && (
           <>
-            <NavLink to="/">HOME </NavLink>
+            <NavLink to="/">HOME 🏠</NavLink>
             <NavLink to="/product">View Book</NavLink>
             <NavLink to="/add-book">Add Book</NavLink>
-            <NavLink to="/bookList">Book List</NavLink>
+            {/* <NavLink to="/bookList">Book List</NavLink> */}
             <NavLink to="/user">User</NavLink>
-            <NavLink to="/update-profile">Update Profile</NavLink>
-            <Button onClick={() => authContext.signOut()}>LogOut</Button>
+            {/* <NavLink to="/update-profile">Update Profile</NavLink> */}
+            <Button color="primary" onClick={() => authContext.signOut()}>
+              LogOut
+            </Button>
           </>
         )}
 
@@ -80,7 +82,7 @@ export default function Header() {
             width: 400,
             position: "absolute",
             right: 55,
-            backgroundColor: "rgb(255,255,255,0.3)",
+            backgroundColor: "violet",
             paddingInline: 10,
             maxHeight: 280,
             overflowY: "scroll",
@@ -94,7 +96,7 @@ export default function Header() {
                 key={book.id}
                 style={{
                   boxShadow: "1px 1px 1px grey",
-                  backgroundColor: "rgba(128, 128, 128, 0.17)",
+                  backgroundColor: "rgba(255, 255,255)",
                   borderRadius: 10,
                   marginBlock: 10,
                 }}
