@@ -14,13 +14,18 @@ import { AuthProvider } from "./contexts/auth";
 import { CartProvider } from "./contexts/cartContext";
 import EditBook from "./components/EditBook";
 import ProductPage from "./components/ProductPage";
+import Users from "./components/Users";
+import EditUser from "./components/EditUser";
+import Category from "./components/categoty";
+import EditCategory from "./components/EditCategory";
 
 const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
       light: "#ff4081",
-      main: purple[600],
+      // main: purple[600],
+      main: "#800080",
       dark: "#c51162",
       contrastText: "#fff",
     },
@@ -60,6 +65,11 @@ function App() {
             <Route path="/editBook/:id" element={<EditBook />} />
             <Route path="/product" element={<ProductPage />} />
             <Route path="/add-book" element={<EditBook />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/editUser/:id" element={<EditUser />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/editCategory/:id" element={<EditCategory />} />
+            <Route path="/add-category" element={<EditCategory />} />
           </Routes>
         </CartProvider>
       </AuthProvider>

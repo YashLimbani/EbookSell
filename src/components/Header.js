@@ -54,24 +54,24 @@ export default function Header() {
       <div className="header">
         {authContext.user.id != 0 && (
           <>
-            <NavLink to="/">HOME 🏠</NavLink>
+            <NavLink to="/">HOME</NavLink>
             <NavLink to="/product">View Book</NavLink>
             <NavLink to="/add-book">Add Book</NavLink>
             {/* <NavLink to="/bookList">Book List</NavLink> */}
-            <NavLink to="/user">User</NavLink>
+            <NavLink to="/users">Users</NavLink>
+            <NavLink to="/category">Categories</NavLink>
             {/* <NavLink to="/update-profile">Update Profile</NavLink> */}
             <Button color="primary" onClick={() => authContext.signOut()}>
               LogOut
             </Button>
+            <div className="search" onClick={onSearch}>
+              🔎
+            </div>
           </>
         )}
 
         {!authContext.user.id && <NavLink to="/register">Register</NavLink>}
         {!authContext.user.id && <NavLink to="/login">Login</NavLink>}
-
-        <div className="search" onClick={onSearch}>
-          🔎
-        </div>
       </div>
       {showSearch && SearchBar}
       {showSearch && <div className="overlay" onClick={toogleSearch}></div>}

@@ -103,7 +103,13 @@ const EditBook = () => {
         variant="h4"
         align="center"
         color="primary"
-        style={{ fontWeight: "bold" }}
+        // style={{ fontWeight: "bold" }}
+        style={{
+          overflow: "hidden",
+          padding: 20,
+          //   color: "purple",
+          fontWeight: "bold",
+        }}
       >
         {id ? "Edit" : "Add"} Book
       </Typography>

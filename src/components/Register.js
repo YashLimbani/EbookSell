@@ -22,7 +22,11 @@ export default function Register(props) {
     roleId: "",
   };
 
-  const Option = ["buyer", "Seller"];
+  // const Option = ["buyer", "Seller"];
+  const Option = [
+    { id: 3, name: "buyer" },
+    { id: 2, name: "seller" },
+  ];
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name isRequired"),
@@ -55,10 +59,16 @@ export default function Register(props) {
       style={{
         overflow: "hidden",
         padding: 20,
-        color: "purple",
+        // color: "purple",
+        fontWeight: "bold",
       }}
     >
-      <Typography variant="h4" align="center">
+      <Typography
+        variant="h4"
+        align="center"
+        color="primary"
+        style={{ fontWeight: "bolder" }}
+      >
         Create Account
       </Typography>
 

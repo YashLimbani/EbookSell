@@ -38,7 +38,13 @@ export default function Login() {
 
   const navigate = useNavigate();
   return (
-    <div style={{ overflow: "hidden" }}>
+    <div
+      style={{
+        overflow: "hidden",
+        padding: 20,
+        color: "purple",
+      }}
+    >
       <Typography
         variant="h4"
         align="center"
