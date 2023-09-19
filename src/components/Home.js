@@ -279,7 +279,7 @@ export default function BookListing() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => console.log("hiiii")}
+                    onClick={() => addToCart(book)}
                   >
                     Add To Cart
                   </Button>
