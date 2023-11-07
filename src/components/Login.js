@@ -29,9 +29,10 @@ export default function Login() {
     console.log("LOGIN ......");
     authService.login(data).then((res) => {
       toast.success("Successfully registered");
-      // console.log("res",res);
+      console.log("res.........", res);
       authContext.setUser(res);
       // setLogin(true);
+
       navigate("/");
     });
   };

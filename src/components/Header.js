@@ -57,11 +57,20 @@ export default function Header() {
         {authContext.user.id != 0 && (
           <>
             <NavLink to="/">HOME</NavLink>
-            <NavLink to="/product">View Book</NavLink>
-            <NavLink to="/add-book">Add Book</NavLink>
+            {authContext.user.roleId == 2 && (
+              <NavLink to="/product">View Book</NavLink>
+            )}
+            {authContext.user.roleId == 2 && (
+              <NavLink to="/add-book">Add Book</NavLink>
+            )}
             {/* <NavLink to="/bookList">Book List</NavLink> */}
-            <NavLink to="/users">Users</NavLink>
-            <NavLink to="/category">Categories</NavLink>
+            {authContext.user.roleId == 1 && (
+              <NavLink to="/users">Users</NavLink>
+            )}
+
+            {authContext.user.roleId == 2 && (
+              <NavLink to="/category">Categories</NavLink>
+            )}
             <NavLink to="/cart">Cart</NavLink>
             {/* <NavLink to="/update-profile">Update Profile</NavLink> */}
             <Button color="primary" onClick={() => authContext.signOut()}>
